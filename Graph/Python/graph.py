@@ -29,11 +29,39 @@ class Graph:
     def edges(self):
         return self.__edges
     #Private function to generate all edges given graph
-    def __generate_edges():
-        for key in self.__graphDict.Keys():
+    def __generate_edges(self):
+        for key in self.__vertices:
             for dest in self.__graphDict[key]:
                 self.__edges.append((key,dest))
-    
+
+    def bfs(self,start):
+        visited = {v: False for v in self.__vertices}
+        queue = []
+        bfs_tree = []
+        queue.append(self.__graphDict[start])
+        visited[start] = True
+        bfs_tree.append(start)
+        
+        for el in queue:
+            if not visited[el]:
+                bfs_tree.append(el)
+                visited[el] = True
+                queue.append(self.__graphDict[el])
+
+        print (bfs_tree)
+    def dfs(self,start):
+        visited = {v: False for v in self.__vertices}
+        stack = []
+        dfs_tree = []
+        stack.append(self.__graphDict[start])
+        visited[start] = True
+        dfs_tree.append(start)
+        for el in stack:
+            if not visited[el]:
+            dfs_tree.append(el)
+            visited[el] = True
+            stack.append(self.__graphDict[el])        
+        
 if __name__ == "__main__":
 
     g = { "a" : ["d"],
