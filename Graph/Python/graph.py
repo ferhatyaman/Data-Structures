@@ -79,6 +79,33 @@ class Graph:
                     stack.append(ad)
 
         return dfs_tree
+    #Rcursive function for topological sort to find deepest vertices
+    def __topological_sort_util(self, v, visited, top_stack):
+        #Mark v vertex as visited
+        visited[v] = True
+
+        for u in self.__graph[v]:
+            if visited[u] == False:
+                self.__topological_sort_util(u,visited,top_stack)
+        
+        #add vertex which its indegree is zero
+        top_stack.insert(0,v)
+
+        
+        
+    #return topological sort of graph
+    def topological_sort(self,start):
+        #Mark all verticies as unvisited
+        visited = {v: False for v in self.__vertices}
+        #Create stack to keep trrack of vertices
+        top_stack = []
+        
+        #Iterate over all vertices if it is unvisited call recursive util func
+        for v in self.__vertices:
+            if visited[v] == False:
+                self.__topological_sort_util(v,visited.top_stack)
+        return top_stack
+
 if __name__ == "__main__":
 
     g = { "a" : ["d"],
@@ -112,3 +139,6 @@ if __name__ == "__main__":
 
     print("DFS of graph:")
     print(graph.dfs('e'))
+
+    print("Topological sort of graph:")
+    print(graph.topological_sort('e'))
