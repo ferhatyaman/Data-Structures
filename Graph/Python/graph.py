@@ -94,7 +94,7 @@ class Graph:
         
         
     #return topological sort of graph
-    def topological_sort(self,start):
+    def topological_sort(self):
         #Mark all verticies as unvisited
         visited = {v: False for v in self.__vertices}
         #Create stack to keep trrack of vertices
@@ -103,7 +103,7 @@ class Graph:
         #Iterate over all vertices if it is unvisited call recursive util func
         for v in self.__vertices:
             if visited[v] == False:
-                self.__topological_sort_util(v,visited.top_stack)
+                self.__topological_sort_util(v,visited,top_stack)
         return top_stack
 
 if __name__ == "__main__":
@@ -141,4 +141,4 @@ if __name__ == "__main__":
     print(graph.dfs('e'))
 
     print("Topological sort of graph:")
-    print(graph.topological_sort('e'))
+    print(graph.topological_sort())
